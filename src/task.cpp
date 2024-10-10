@@ -123,4 +123,5 @@ void Task::printTask() {
         std::cout << successors[i]->getID() << " ";
     }
     std::cout << std::endl;
+    std::cout << std::endl;
 }
