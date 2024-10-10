@@ -111,9 +111,9 @@ int main() {
     // Write the DOT file header
     outputFile << "digraph G {" << std::endl;
 
-    // Write the tasks to the DOT file. Format: "ID [label="Name (duration) | Start, Finish"];"
+    // Write the tasks to the DOT file
     for (auto& task : tasks) {
-        outputFile << "  " << task->getID() << " [shape=rect, style=filled, fillcolor=lightblue, label=\"" << task->getID() << " (" << task->getDuration() << ") | " << task->getStart() << ", " << task->getFinish() << "\"];" << std::endl;
+        outputFile << "  " << task->getID() << " [shape=rect, style=filled, fillcolor=lightblue, label=<<table border=\"0\" cellborder=\"1\" cellspacing=\"0\"><tr><td>" << task->getID() << " (" << task->getDuration() << ")</td><td>" << task->getStart() << ", " << task->getFinish() << "</td></tr></table>>];" << std::endl;
     }
 
     // Write the edges to the DOT file
