@@ -11,23 +11,23 @@ This is a simple implementation of PERT Diagram in C++ using Graphviz for visual
 ## Example
 
 An example of data needed to run the program is provided in the `data/tasks.json` file.
-The json file should contain the following fields:
+The json file should have the following structure:
 
-```json
-{
-    "data" [
-        {
-            "resource": "resource_name", // string
-            "tasks": [
-                {
-                    "id": "task_id", // string
-                    "name": "task_name", // string
-                    "duration": "task_duration", // int
-                    "predecessors": ["task_id1", "task_id2", ...] // array of strings
-                }
-            ]
-        }
-    ]
+```ts
+interface Data {
+    data: Resource[];
+}
+
+interface Resource {
+    resource: string;
+    tasks: Task[];
+}
+
+interface Task {
+    id: string;
+    name: string;
+    duration: number;
+    predecessors: string[];
 }
 ```
 
