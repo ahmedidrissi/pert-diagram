@@ -1,7 +1,8 @@
 {
-    "tasks": [
+    "data": [
         {
-            "G": [
+            "resource": "G",
+            "tasks": [
                 {
                     "id": "G1",
                     "name": "Kickoff Meeting 1",
@@ -68,8 +69,11 @@
                     "duration": 1,
                     "predecessors": ["G10"]
                 }
-            ],
-            "H": [
+            ]
+        },
+        {
+            "resource": "H",
+            "tasks": [
                 {
                     "id": "H1",
                     "name": "Conception 2",
@@ -117,8 +121,11 @@
                     "duration": 2,
                     "predecessors": ["H7"]
                 }
-            ],
-            "C": [
+            ]
+        },
+        {
+            "resource": "C",
+            "tasks": [
                 {
                     "id": "C1",
                     "name": "Conception 3",
@@ -157,6 +164,5 @@
                 }
             ]
         }
-
     ]
 }
