@@ -1,4 +1,4 @@
-#include "Task.h"
+#include "task.h"
 #include <iostream>
 
 Task::Task(std::string ID, std::string name, int duration, std::string resource) {
