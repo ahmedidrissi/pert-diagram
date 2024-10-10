@@ -56,6 +56,9 @@ int main() {
         }
     }
 
+    // Close the input file
+    inputFile.close();
+
     // Add successors to the tasks
     for (auto& task : tasks) {
         for (auto& pred : task->getPredecessors()) {
@@ -96,10 +99,39 @@ int main() {
         }
     }
 
-    // Print the tasks
-    for (auto& task : tasks) {
-        task->printTask();
+    // Print using DOT format
+    std::ofstream outputFile("../output/tasks.dot");
+
+    // Check if the file is open
+    if (!outputFile.is_open()) {
+        std::cerr << "Error: Could not open file" << std::endl;
+        return 1;
     }
+
+    // Write the DOT file header
+    outputFile << "digraph G {" << std::endl;
+
+    // Write the tasks to the DOT file. Format: "ID [label="Name (duration) | Start, Finish"];"
+    for (auto& task : tasks) {
+        outputFile << "  " << task->getID() << " [shape=rect, style=filled, fillcolor=lightblue, label=\"" << task->getID() << " (" << task->getDuration() << ") | " << task->getStart() << ", " << task->getFinish() << "\"];" << std::endl;
+    }
+
+    // Write the edges to the DOT file
+    for (auto& task : tasks) {
+        for (auto& succ : task->getSuccessors()) {
+            outputFile << "  " << task->getID() << " -> " << succ->getID() << ";" << std::endl;
+        }
+    }
+
+    // Write the DOT file footer
+    outputFile << "}" << std::endl;
+
+    // Close the output file
+    outputFile.close();
+
+    // Generate the PNG file
+    std::string command = "dot -Tpng ../output/tasks.dot -o ../output/tasks.png";
+    system(command.c_str());
 
     return 0;
 }
