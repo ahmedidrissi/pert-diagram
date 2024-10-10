@@ -38,12 +38,21 @@ public:
      */
     ~Task();
 
+
     /**
      * @brief Get the ID of the task
      * 
      * @return std::string Task ID
      */
     std::string getID();
+
+    /**
+     * @brief Set the ID of the task
+     * 
+     * @param ID Task ID
+     */
+    void setID(std::string ID);
+
 
     /**
      * @brief Get the name of the task
@@ -53,11 +62,27 @@ public:
     std::string getName();
 
     /**
+     * @brief Set the name of the task
+     * 
+     * @param name Task name
+     */
+    void setName(std::string name);
+
+
+    /**
      * @brief Get the duration of the task in days
      * 
      * @return int Task duration
      */
     int getDuration();
+
+    /**
+     * @brief Set the duration of the task in days
+     * 
+     * @param duration Task duration
+     */
+    void setDuration(int duration);
+
 
     /**
      * @brief Get the start time of the task in days
@@ -67,60 +92,19 @@ public:
     int getStart();
 
     /**
-     * @brief Get the finish time of the task in days
-     * 
-     * @return int Task finish time
-     */
-    int getFinish();
-
-    /**
-     * @brief Get the predecessors of the task
-     * 
-     * @return std::vector<Task*> Predecessors of the task
-     */
-    std::vector<Task*> getPredecessors();
-
-    /**
-     * @brief Get the successors of the task
-     * 
-     * @return std::vector<Task*> Successors of the task
-     */
-    std::vector<Task*> getSuccessors();
-
-    /**
-     * @brief Get the resource of the task
-     * 
-     * @return std::string Task resource
-     */
-    std::string getResource();
-
-    /**
-     * @brief Set the ID of the task
-     * 
-     * @param ID Task ID
-     */
-    void setID(std::string ID);
-
-    /**
-     * @brief Set the name of the task
-     * 
-     * @param name Task name
-     */
-    void setName(std::string name);
-
-    /**
-     * @brief Set the duration of the task in days
-     * 
-     * @param duration Task duration
-     */
-    void setDuration(int duration);
-
-    /**
      * @brief Set the start time of the task in days
      * 
      * @param start Task start time
      */
     void setStart(int start);
+
+
+    /**
+     * @brief Get the finish time of the task in days
+     * 
+     * @return int Task finish time
+     */
+    int getFinish();
 
     /**
      * @brief Set the finish time of the task in days
@@ -130,11 +114,33 @@ public:
     void setFinish(int finish);
 
     /**
+     * @brief Get the predecessors of the task
+     * 
+     * @return std::vector<Task*> Predecessors of the task
+     */
+    std::vector<Task*> getPredecessors();
+
+    /**
      * @brief Set the resource of the task
      * 
      * @param resource Task resource
      */
     void addPredecessor(Task* task);
+
+    /**
+     * @brief Remove a predecessor from the task
+     * 
+     * @param task Task predecessor
+     */
+    void removePredecessor(Task* task);
+
+
+    /**
+     * @brief Get the successors of the task
+     * 
+     * @return std::vector<Task*> Successors of the task
+     */
+    std::vector<Task*> getSuccessors();
 
     /**
      * @brief Add a successor to the task
@@ -144,18 +150,27 @@ public:
     void addSuccessor(Task* task);
 
     /**
-     * @brief Remove a predecessor from the task
-     * 
-     * @param task Task predecessor
-     */
-    void removePredecessor(Task* task);
-
-    /**
      * @brief Remove a successor from the task
      * 
      * @param task Task successor
      */
     void removeSuccessor(Task* task);
+
+
+    /**
+     * @brief Get the resource of the task
+     * 
+     * @return std::string Task resource
+     */
+    std::string getResource();
+
+    /**
+     * @brief Set the resource of the task
+     *
+     * @param resource Task resource
+     */
+    void setResource(std::string resource);
+
 
     /**
      * @brief Print the task details
