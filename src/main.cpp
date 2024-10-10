@@ -56,20 +56,50 @@ int main() {
         }
     }
 
-    // Print the tasks with resource "G"
+    // Add successors to the tasks
     for (auto& task : tasks) {
-        if (task->getResource() == "G") {
-            std::cout << "Task ID: " << task->getID() << std::endl;
-            std::cout << "Task Name: " << task->getName() << std::endl;
-            std::cout << "Task Duration: " << task->getDuration() << std::endl;
-            std::cout << "Task Resource: " << task->getResource() << std::endl;
-            std::cout << "Task Predecessors: ";
-            for (auto& pred : task->getPredecessors()) {
-                std::cout << pred->getID() << " ";
-            }
-            std::cout << std::endl;
-            std::cout << std::endl;
+        for (auto& pred : task->getPredecessors()) {
+            pred->addSuccessor(task);
         }
     }
+
+    // Start time is the maximum of the start time plus duration of all predecessors
+    // Start(task_i) = max(Start(task_j) + Duration(task_j)) for all task_j in Predecessors(task_i)
+    for (auto& task : tasks) {
+        if (task->getPredecessors().size() == 0) {
+            task->setStart(0);
+        } else {
+            int max = 0;
+            for (auto& pred : task->getPredecessors()) {
+                if (pred->getStart() + pred->getDuration() > max) {
+                    max = pred->getStart() + pred->getDuration();
+                }
+            }
+            task->setStart(max);
+        }
+    }
+    
+    // Finish time is the minimum of the finish time minus duration of all successors
+    // Finish(task_i) = min(Finish(task_j) - Duration(task_i)) for all task_j in Successors(task_i)
+    for (auto it = tasks.rbegin(); it != tasks.rend(); ++it) {
+        Task* task = *it;
+        if (task->getSuccessors().size() == 0) {
+            task->setFinish(task->getStart() + task->getDuration());
+        } else {
+            int min = 999999;
+            for (auto& succ : task->getSuccessors()) {
+                if (succ->getFinish() - succ->getDuration() < min) {
+                    min = succ->getFinish() - succ->getDuration();
+                }
+            }
+            task->setFinish(min);
+        }
+    }
+
+    // Print the tasks
+    for (auto& task : tasks) {
+        task->printTask();
+    }
+
     return 0;
 }
