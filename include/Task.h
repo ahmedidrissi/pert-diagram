@@ -1,47 +1,19 @@
-// Purpose: Header file for Task class
-
 #ifndef TASK_H
 #define TASK_H
 
 #include <string>
 #include <vector>
 
-class Task {
-/*
- * Task class represents a task in the project.
+/**
+ * @class Task
+ * @brief Task class represents a task in a project.
  * 
- * Attributes:
- * - ID: unique identifier of the task
- * - name: name of the task
- * - duration: duration of the task in days
- * - start: start time of the task in days
- * - finish: finish time of the task in days
- * - predecessors: list of tasks that need to be completed before this task can start
- * - successors: list of tasks that depend on this task
- * - resource: name of the resource assigned to the task
- * 
- * Methods:
- * - constructor: creates a new task with the given ID, name, duration, and resource
- * - destructor: destroys the task
- * - getID: returns the ID of the task
- * - getName: returns the name of the task
- * - getDuration: returns the duration of the task
- * - getStart: returns the start time of the task
- * - getFinish: returns the finish time of the task
- * - getPredecessors: returns the list of predecessors of the task
- * - getSuccessors: returns the list of successors of the task
- * - getResource: returns the resource assigned to the task
- * - setStart: sets the start time of the task
- * - setFinish: sets the finish time of the task
- * - addPredecessor: adds a task to the list of predecessors
- * - addSuccessor: adds a task to the list of successors
- * - removePredecessor: removes a task from the list of predecessors
- * - removeSuccessor: removes a task from the list of successors
- * - printTask: prints the details of the task
+ * Each task has a unique identifier, name, duration, start and finish time, predecessors, successors, and resource.
  */
+class Task {
 
 private:
-    int ID;
+    std::string ID;
     std::string name;
     int duration;
     int start;
@@ -51,26 +23,144 @@ private:
     std::string resource;
 
 public:
-    Task(int ID, std::string name, int duration, std::string resource); // constructor
-    ~Task(); // destructor
+    /**
+     * @brief Construct a new Task object
+     * 
+     * @param ID Task ID
+     * @param name Task name
+     * @param duration Task duration
+     * @param resource Task resource
+     */
+    Task(std::string ID, std::string name, int duration, std::string resource);
 
-    int getID();
+    /**
+     * @brief Destroy the Task object
+     */
+    ~Task();
+
+    /**
+     * @brief Get the ID of the task
+     * 
+     * @return std::string Task ID
+     */
+    std::string getID();
+
+    /**
+     * @brief Get the name of the task
+     * 
+     * @return std::string Task name
+     */
     std::string getName();
+
+    /**
+     * @brief Get the duration of the task in days
+     * 
+     * @return int Task duration
+     */
     int getDuration();
+
+    /**
+     * @brief Get the start time of the task in days
+     * 
+     * @return int Task start time
+     */
     int getStart();
+
+    /**
+     * @brief Get the finish time of the task in days
+     * 
+     * @return int Task finish time
+     */
     int getFinish();
+
+    /**
+     * @brief Get the predecessors of the task
+     * 
+     * @return std::vector<Task*> Predecessors of the task
+     */
     std::vector<Task*> getPredecessors();
+
+    /**
+     * @brief Get the successors of the task
+     * 
+     * @return std::vector<Task*> Successors of the task
+     */
     std::vector<Task*> getSuccessors();
+
+    /**
+     * @brief Get the resource of the task
+     * 
+     * @return std::string Task resource
+     */
     std::string getResource();
 
+    /**
+     * @brief Set the ID of the task
+     * 
+     * @param ID Task ID
+     */
+    void setID(std::string ID);
+
+    /**
+     * @brief Set the name of the task
+     * 
+     * @param name Task name
+     */
+    void setName(std::string name);
+
+    /**
+     * @brief Set the duration of the task in days
+     * 
+     * @param duration Task duration
+     */
+    void setDuration(int duration);
+
+    /**
+     * @brief Set the start time of the task in days
+     * 
+     * @param start Task start time
+     */
     void setStart(int start);
+
+    /**
+     * @brief Set the finish time of the task in days
+     * 
+     * @param finish Task finish time
+     */
     void setFinish(int finish);
+
+    /**
+     * @brief Set the resource of the task
+     * 
+     * @param resource Task resource
+     */
     void addPredecessor(Task* task);
+
+    /**
+     * @brief Add a successor to the task
+     * 
+     * @param task Task successor
+     */
     void addSuccessor(Task* task);
+
+    /**
+     * @brief Remove a predecessor from the task
+     * 
+     * @param task Task predecessor
+     */
     void removePredecessor(Task* task);
+
+    /**
+     * @brief Remove a successor from the task
+     * 
+     * @param task Task successor
+     */
     void removeSuccessor(Task* task);
 
-    void printTask();    
+    /**
+     * @brief Print the task details
+     */
+    void printTask();
 };
 
 #endif
