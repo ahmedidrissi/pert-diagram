@@ -1,0 +1,162 @@
+{
+    "tasks": [
+        {
+            "G": [
+                {
+                    "id": "G1",
+                    "name": "Kickoff Meeting 1",
+                    "duration": 1,
+                    "predecessors": []
+                },
+                {
+                    "id": "G2",
+                    "name": "Kickoff Meeting 2",
+                    "duration": 1,
+                    "predecessors": ["G1"]
+                },
+                {
+                    "id": "G3",
+                    "name": "Kickoff Meeting 3",
+                    "duration": 2,
+                    "predecessors": ["G2"]
+                },
+                {
+                    "id": "G4",
+                    "name": "Analyse 1",
+                    "duration": 6,
+                    "predecessors": ["G3"]
+                },
+                {
+                    "id": "G5",
+                    "name": "Recrutement Equipe Dev. 1",
+                    "duration": 1,
+                    "predecessors": ["G4", "H2"]
+                },
+                {
+                    "id": "G6",
+                    "name": "Conception 1",
+                    "duration": 5,
+                    "predecessors": ["G5"]
+                },
+                {
+                    "id": "G7",
+                    "name": "Prototypage 1",
+                    "duration": 4,
+                    "predecessors": ["G6"]
+                },
+                {
+                    "id": "G8",
+                    "name": "Validation du prototype 1",
+                    "duration": 2,
+                    "predecessors": ["G7"]
+                },
+                {
+                    "id": "G9",
+                    "name": "Codage 1",
+                    "duration": 20,
+                    "predecessors": ["G8"]
+                },
+                {
+                    "id": "G10",
+                    "name": "Validation 1 selon les normes generales",
+                    "duration": 2,
+                    "predecessors": ["G9", "H6"]
+                },
+                {
+                    "id": "G11",
+                    "name": "Redaction du PV1 de validation",
+                    "duration": 1,
+                    "predecessors": ["G10"]
+                }
+            ],
+            "H": [
+                {
+                    "id": "H1",
+                    "name": "Conception 2",
+                    "duration": 5,
+                    "predecessors": ["G2"]
+                },
+                {
+                    "id": "H2",
+                    "name": "Recrutement Equipe Dev. 2",
+                    "duration": 1,
+                    "predecessors": ["H1"]
+                },{
+                    "id": "H3",
+                    "name": "Benchmark 2",
+                    "duration": 15,
+                    "predecessors": ["H2"]
+                },
+                {
+                    "id": "H4",
+                    "name": "Codage 2",
+                    "duration": 20,
+                    "predecessors": ["H3"]
+                },
+                {
+                    "id": "H5",
+                    "name": "Test 2",
+                    "duration": 7,
+                    "predecessors": ["H4"]
+                },
+                {
+                    "id": "H6",
+                    "name": "Definition des normes generales de validation des lots",
+                    "duration": 6,
+                    "predecessors": ["H5"]
+                },
+                {
+                    "id": "H7",
+                    "name": "Validation 2 selon les normes generales",
+                    "duration": 4,
+                    "predecessors": ["H6"]
+                },
+                {
+                    "id": "H8",
+                    "name": "Redaction du PV2 de validation",
+                    "duration": 2,
+                    "predecessors": ["H7"]
+                }
+            ],
+            "C": [
+                {
+                    "id": "C1",
+                    "name": "Conception 3",
+                    "duration": 5,
+                    "predecessors": ["G3"]
+                },
+                {
+                    "id": "C2",
+                    "name": "Recrutement Equipe Dev. 3",
+                    "duration": 2,
+                    "predecessors": ["C1", "G5"]
+                },
+                {
+                    "id": "C3",
+                    "name": "Benchmark 3",
+                    "duration": 2,
+                    "predecessors": ["C2"]
+                },
+                {
+                    "id": "C4",
+                    "name": "Codage 3",
+                    "duration": 15,
+                    "predecessors": ["C3"]
+                },
+                {
+                    "id": "C5",
+                    "name": "Validation 3 selon les normes generales",
+                    "duration": 2,
+                    "predecessors": ["C4", "H6"]
+                },
+                {
+                    "id": "C6",
+                    "name": "Redaction du PV3 de validation",
+                    "duration": 1,
+                    "predecessors": ["C5"]
+                }
+            ]
+        }
+
+    ]
+}
