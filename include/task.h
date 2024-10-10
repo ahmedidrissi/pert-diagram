@@ -23,8 +23,14 @@ private:
     std::string resource;
 
 public:
+
     /**
      * @brief Construct a new Task object
+     */
+    Task();
+
+    /**
+     * @brief Construct a new Task object with the given parameters.
      * 
      * @param ID Task ID
      * @param name Task name
