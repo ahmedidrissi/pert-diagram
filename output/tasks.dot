@@ -1,15 +1,15 @@
 digraph G {
   G1 [shape=rect, style=filled, fillcolor=lightblue, label=<<table border="0" cellborder="1" cellspacing="0"><tr><td>G1 (1)</td><td>0, 1</td></tr></table>>];
   G2 [shape=rect, style=filled, fillcolor=lightblue, label=<<table border="0" cellborder="1" cellspacing="0"><tr><td>G2 (1)</td><td>1, 2</td></tr></table>>];
-  G3 [shape=rect, style=filled, fillcolor=lightblue, label=<<table border="0" cellborder="1" cellspacing="0"><tr><td>G3 (2)</td><td>2, 4</td></tr></table>>];
-  G4 [shape=rect, style=filled, fillcolor=lightblue, label=<<table border="0" cellborder="1" cellspacing="0"><tr><td>G4 (6)</td><td>4, 10</td></tr></table>>];
-  G5 [shape=rect, style=filled, fillcolor=lightblue, label=<<table border="0" cellborder="1" cellspacing="0"><tr><td>G5 (1)</td><td>10, 11</td></tr></table>>];
-  G6 [shape=rect, style=filled, fillcolor=lightblue, label=<<table border="0" cellborder="1" cellspacing="0"><tr><td>G6 (5)</td><td>11, 16</td></tr></table>>];
-  G7 [shape=rect, style=filled, fillcolor=lightblue, label=<<table border="0" cellborder="1" cellspacing="0"><tr><td>G7 (4)</td><td>16, 20</td></tr></table>>];
-  G8 [shape=rect, style=filled, fillcolor=lightblue, label=<<table border="0" cellborder="1" cellspacing="0"><tr><td>G8 (2)</td><td>20, 22</td></tr></table>>];
-  G9 [shape=rect, style=filled, fillcolor=lightblue, label=<<table border="0" cellborder="1" cellspacing="0"><tr><td>G9 (20)</td><td>22, 42</td></tr></table>>];
-  G10 [shape=rect, style=filled, fillcolor=lightblue, label=<<table border="0" cellborder="1" cellspacing="0"><tr><td>G10 (2)</td><td>42, 44</td></tr></table>>];
-  G11 [shape=rect, style=filled, fillcolor=lightblue, label=<<table border="0" cellborder="1" cellspacing="0"><tr><td>G11 (1)</td><td>44, 45</td></tr></table>>];
+  G3 [shape=rect, style=filled, fillcolor=lightblue, label=<<table border="0" cellborder="1" cellspacing="0"><tr><td>G3 (2)</td><td>2, 18</td></tr></table>>];
+  G4 [shape=rect, style=filled, fillcolor=lightblue, label=<<table border="0" cellborder="1" cellspacing="0"><tr><td>G4 (6)</td><td>4, 24</td></tr></table>>];
+  G5 [shape=rect, style=filled, fillcolor=lightblue, label=<<table border="0" cellborder="1" cellspacing="0"><tr><td>G5 (1)</td><td>10, 25</td></tr></table>>];
+  G6 [shape=rect, style=filled, fillcolor=lightblue, label=<<table border="0" cellborder="1" cellspacing="0"><tr><td>G6 (5)</td><td>11, 30</td></tr></table>>];
+  G7 [shape=rect, style=filled, fillcolor=lightblue, label=<<table border="0" cellborder="1" cellspacing="0"><tr><td>G7 (4)</td><td>16, 34</td></tr></table>>];
+  G8 [shape=rect, style=filled, fillcolor=lightblue, label=<<table border="0" cellborder="1" cellspacing="0"><tr><td>G8 (2)</td><td>20, 36</td></tr></table>>];
+  G9 [shape=rect, style=filled, fillcolor=lightblue, label=<<table border="0" cellborder="1" cellspacing="0"><tr><td>G9 (20)</td><td>22, 56</td></tr></table>>];
+  G10 [shape=rect, style=filled, fillcolor=lightblue, label=<<table border="0" cellborder="1" cellspacing="0"><tr><td>G10 (2)</td><td>56, 58</td></tr></table>>];
+  G11 [shape=rect, style=filled, fillcolor=lightblue, label=<<table border="0" cellborder="1" cellspacing="0"><tr><td>G11 (1)</td><td>58, 59</td></tr></table>>];
   H1 [shape=rect, style=filled, fillcolor=lightblue, label=<<table border="0" cellborder="1" cellspacing="0"><tr><td>H1 (5)</td><td>2, 7</td></tr></table>>];
   H2 [shape=rect, style=filled, fillcolor=lightblue, label=<<table border="0" cellborder="1" cellspacing="0"><tr><td>H2 (1)</td><td>7, 8</td></tr></table>>];
   H3 [shape=rect, style=filled, fillcolor=lightblue, label=<<table border="0" cellborder="1" cellspacing="0"><tr><td>H3 (15)</td><td>8, 23</td></tr></table>>];
@@ -38,10 +38,12 @@ digraph G {
   G9 -> G10;
   G10 -> G11;
   H1 -> H2;
+  H2 -> G5;
   H2 -> H3;
   H3 -> H4;
   H4 -> H5;
   H5 -> H6;
+  H6 -> G10;
   H6 -> H7;
   H6 -> C5;
   H7 -> H8;

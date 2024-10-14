@@ -7,6 +7,44 @@
 
 using json = nlohmann::json;
 
+int max(int a, int b) {
+    return (a > b) ? a : b;
+}
+
+int min(int a, int b) {
+    return (a < b) ? a : b;
+}
+
+// define a recursive function to calculate the start time of a task
+int calculateStart(Task* task) {
+    if (task->getPredecessors().size() == 0) {
+        return 0;
+    } else {
+        int max = 0;
+        for (auto& pred : task->getPredecessors()) {
+            if (calculateStart(pred) + pred->getDuration() > max) {
+                max = calculateStart(pred) + pred->getDuration();
+            }
+        }
+        return max;
+    }
+}
+
+// define a recursive function to calculate the finish time of a task
+int calculateFinish(Task* task) {
+    if (task->getSuccessors().size() == 0) {
+        return task->getStart() + task->getDuration();
+    } else {
+        int min = 999999;
+        for (auto& succ : task->getSuccessors()) {
+            if (calculateFinish(succ) - succ->getDuration() < min) {
+                min = calculateFinish(succ) - succ->getDuration();
+            }
+        }
+        return min;
+    }
+}
+    
 int main() {
     // Create a list of tasks
     std::vector<Task*> tasks;
@@ -36,23 +74,41 @@ int main() {
             // Create a new task object
             Task* newTask = new Task(task["id"], task["name"], task["duration"], resource);
 
-            // Add predecessors to the task
-            std::vector<std::string> predecessors = task["predecessors"];
-            for (auto& pred : predecessors) {
-                Task* predecessor = nullptr;
-                for (auto& t : tasks) {
-                    if (t->getID() == pred) {
-                        predecessor = t;
-                        break;
-                    }
-                }
-                if (predecessor != nullptr) {
-                    newTask->addPredecessor(predecessor);
+            // Add the task to the list of tasks
+            tasks.push_back(newTask);
+        }
+    }
+
+    // Link the tasks based on the JSON file
+    for (auto& element : data["data"]) {
+
+        // Iterate over the tasks for the given resource
+        for (auto& task : element["tasks"]) {
+
+            // Get the task object
+            Task* currentTask = nullptr;
+            for (auto& t : tasks) {
+                if (t->getID() == task["id"]) {
+                    currentTask = t;
+                    break;
                 }
             }
 
-            // Add the task to the list of tasks
-            tasks.push_back(newTask);
+            // Iterate over the predecessors for the given task
+            for (auto& pred : task["predecessors"]) {
+
+                // Get the predecessor task object
+                Task* predecessorTask = nullptr;
+                for (auto& t : tasks) {
+                    if (t->getID() == pred) {
+                        predecessorTask = t;
+                        break;
+                    }
+                }
+
+                // Add the predecessor to the current task
+                currentTask->addPredecessor(predecessorTask);
+            }
         }
     }
 
@@ -69,34 +125,15 @@ int main() {
     // Start time is the maximum of the start time plus duration of all predecessors
     // Start(task_i) = max(Start(task_j) + Duration(task_j)) for all task_j in Predecessors(task_i)
     for (auto& task : tasks) {
-        if (task->getPredecessors().size() == 0) {
-            task->setStart(0);
-        } else {
-            int max = 0;
-            for (auto& pred : task->getPredecessors()) {
-                if (pred->getStart() + pred->getDuration() > max) {
-                    max = pred->getStart() + pred->getDuration();
-                }
-            }
-            task->setStart(max);
-        }
+        task->setStart(calculateStart(task));
     }
+
     
     // Finish time is the minimum of the finish time minus duration of all successors
     // Finish(task_i) = min(Finish(task_j) - Duration(task_i)) for all task_j in Successors(task_i)
     for (auto it = tasks.rbegin(); it != tasks.rend(); ++it) {
         Task* task = *it;
-        if (task->getSuccessors().size() == 0) {
-            task->setFinish(task->getStart() + task->getDuration());
-        } else {
-            int min = 999999;
-            for (auto& succ : task->getSuccessors()) {
-                if (succ->getFinish() - succ->getDuration() < min) {
-                    min = succ->getFinish() - succ->getDuration();
-                }
-            }
-            task->setFinish(min);
-        }
+        task->setFinish(calculateFinish(task));
     }
 
     // Print using DOT format
